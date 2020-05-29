@@ -11,7 +11,7 @@ router.post("/", (req, res, next) => {
   // const price = req.body.price;
   console.log(req.body);
 
-  db(req.body);
+  db.saveResult(req.body);
   // db.saveResult(req.body);
   res.redirect("/");
 });
