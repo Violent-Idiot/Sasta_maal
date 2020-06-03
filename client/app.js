@@ -6,7 +6,7 @@ var logger = require("morgan");
 var layout = require("express-ejs-layouts");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+require("./scraper");
 var app = express();
 
 // view engine setup

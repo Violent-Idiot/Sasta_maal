@@ -2,21 +2,24 @@
 const puppeteer = require("puppeteer");
 const { findUrl } = require("./config/db");
 const priceCheck = require("./controller/priceCompare");
-(async () => {
+const scheduler = require("node-schedule");
+
+const bot = scheduler.scheduleJob("*/5 * * * *", async () => {
   const browser = await puppeteer.launch({
-    headless: true,
-    //     args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    // headless: false,
+    // args: ["--no-sandbox", "--disable-setuid-sandbox"],
     executablePath:
       "./node_modules/puppeteer/.local-chromium/win64-756035/chrome-win/chrome.exe",
   });
   try {
+    console.log("start");
+
     const page = await browser.newPage();
     page.setUserAgent(
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
     );
-    await page.waitFor(30000);
+    // await page.waitFor(30000);
     var url = await findUrl();
-    var finalArr = [];
     var arr = [];
     for (const i of url) {
       console.log(i.link);
@@ -33,21 +36,14 @@ const priceCheck = require("./controller/priceCompare");
       var result = tag.match(reg);
       var arr = result.join();
       arr = arr.replace(/\,/g, "");
-      // a = Number(a);
       var reg_arr = arr.slice(0, -2);
       console.log(reg_arr);
-      // console.log(typeof Number(arr));
-      finalArr.push(reg_arr);
-      console.log(finalArr);
-      console.log(url.length);
-
       priceCheck(reg_arr, i);
     }
   } catch (err) {
     console.log(err.message);
   } finally {
-    // priceCheck(arr);
-
     await browser.close();
   }
-})();
+});
+module.exports = bot;
