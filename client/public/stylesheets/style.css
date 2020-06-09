@@ -1,8 +1,17 @@
-body {
-  padding: 50px;
+* {
+  box-sizing: border-box;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+.nav-link {
+  color: white !important;
+}
+.navbar-brand {
+  color: white !important;
+}
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+#emailForm {
+  padding-top: 50px;
 }

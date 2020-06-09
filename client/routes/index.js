@@ -1,16 +1,23 @@
 require("dotenv").config();
 var express = require("express");
+var app = express();
 var router = express.Router();
+var checker = require("../scraper");
 var db = require("../config/db");
 var fetch = require("node-fetch");
 router.get("/", function (req, res, next) {
-  res.render("form");
+  res.render("home");
 });
-router.get("*", function (req, res, next) {
-  res.send("kuch kaam nahi hai kya");
+router.post("/", (req, res, next) => {
+  app.set("data", req.body.productLink);
+  res.redirect("/check");
+});
+router.get("/check", async (req, res, next) => {
+  var value = await checker(app.get("data"));
+  res.render("form", { data: value });
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/check", async (req, res, next) => {
   if (
     req.body.captcha === undefined ||
     req.body.captcha === "" ||
@@ -26,7 +33,17 @@ router.post("/", async (req, res, next) => {
     return res.json({ success: false, msg: "falied" });
   }
   res.json({ success: true, msg: "Captcha passed" });
-  db.saveResult(req.body);
-  // res.send("info saved");
+  var url = app.get("data");
+  db.saveResult({
+    email: req.body.email,
+    link: url,
+    price: req.body.price,
+  });
+});
+router.get("/result", (req, res, next) => {
+  res.render("result");
+});
+router.get("*", function (req, res, next) {
+  res.send("kuch kaam nahi hai kya");
 });
 module.exports = router;

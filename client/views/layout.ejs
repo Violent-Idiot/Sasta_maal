@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beta</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- CSS only -->
     <link
@@ -12,6 +15,9 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+    <header>
+      <%- include('./partials/navbar.ejs') %>
+    </header>
     <div class="container">
       <%- body %>
     </div>
@@ -19,17 +25,15 @@
       document.querySelector("#emailForm").addEventListener("submit", (e) => {
         e.preventDefault();
         const email = document.querySelector("#InputEmail").value;
-        const link = document.querySelector("#productLink").value;
         const price = document.querySelector("#price_input").value;
         const captcha = document.querySelector("#g-recaptcha-response").value;
-        fetch("/", {
+        fetch("/check", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
           },
           body: JSON.stringify({
             email,
-            link,
             price,
             captcha,
           }),
@@ -38,6 +42,7 @@
           .then((data) => {
             console.log(data);
             alert(data.msg);
+            if (data.success) return (location.href = "result");
           });
       });
     </script>
