@@ -11,6 +11,5 @@ var mailer = async (price, email, orgPrice, link) => {
   console.log("Email send");
 
   console.log("Message sent: %s", info.messageId);
-  // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 };
 module.exports = mailer;

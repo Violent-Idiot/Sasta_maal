@@ -15,36 +15,20 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <header>
-      <%- include('./partials/navbar.ejs') %>
-    </header>
-    <div class="container">
-      <%- body %>
-    </div>
-    <script>
-      document.querySelector("#emailForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const email = document.querySelector("#InputEmail").value;
-        const price = document.querySelector("#price_input").value;
-        const captcha = document.querySelector("#g-recaptcha-response").value;
-        fetch("/check", {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            price,
-            captcha,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            alert(data.msg);
-            if (data.success) return (location.href = "result");
-          });
+    <!-- <div class="loader"></div> -->
+    <section class="content">
+      <header>
+        <%- include('./partials/navbar.ejs') %>
+      </header>
+      <div class="container">
+        <%- body %>
+      </div>
+    </section>
+    <%- script %>
+    <!-- <script>
+      window.addEventListener("load", () => {
+        document.querySelector(".loader").classList.add("finish");
       });
-    </script>
+    </script> -->
   </body>
 </html>

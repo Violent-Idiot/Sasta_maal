@@ -45,3 +45,28 @@
     Submit
   </button>
 </form>
+<script>
+  document.querySelector("#emailForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.querySelector("#InputEmail").value;
+    const price = document.querySelector("#price_input").value;
+    const captcha = document.querySelector("#g-recaptcha-response").value;
+    fetch("/check", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        price,
+        captcha,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert(data.msg);
+        if (data.success) return (location.href = "result");
+      });
+  });
+</script>
