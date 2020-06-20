@@ -1,0 +1,27 @@
+<form method="POST" action="/users/register">
+  <div class="form-group">
+    <label for="registerEmail">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      id="registerEmail"
+      aria-describedby="emailHelp"
+      required
+    />
+    <small id="emailHelp" class="form-text text-muted"
+      >We'll never share your email with anyone else.</small
+    >
+  </div>
+  <div class="form-group">
+    <label for="registerPassword">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="registerPassword"
+      name="pwd"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

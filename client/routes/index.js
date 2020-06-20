@@ -5,6 +5,7 @@ var router = express.Router();
 var checker = require("../controller/productCheck");
 var { saveResult, findEmail } = require("../controller/dbConfig");
 var fetch = require("node-fetch");
+var isAuth = require("../controller/auth");
 
 router.get("/", function (req, res, next) {
   res.render("home");
@@ -21,13 +22,18 @@ router.post("/", (req, res, next) => {
 
 router.get("/check", async (req, res, next) => {
   var value = await checker(app.get("data"));
-  res.render("form", { data: value });
+  var login = req.isAuthenticated();
+  console.log(login);
+
+  res.render("form", { data: value, login });
 });
 
 router.post("/check", async (req, res, next) => {
   let url = app.get("data");
-  let check = findEmail(req.body.email, url);
-  if (check != null) {
+  let check = await findEmail(req.body.email, url);
+  console.log(check);
+
+  if (!!check) {
     res.json({ success: false, msg: "We have Credentials" });
   } else {
     if (
@@ -57,8 +63,8 @@ router.get("/result", (req, res, next) => {
   res.render("result");
 });
 
-router.get("*", function (req, res, next) {
-  res.send("kuch kaam nahi hai kya");
-});
+// router.get("*", function (req, res, next) {
+//   res.send("kuch kaam nahi hai kya");
+// });
 
 module.exports = router;

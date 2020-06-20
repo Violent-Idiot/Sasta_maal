@@ -1,7 +1,8 @@
 <p><%= data[0] %></p>
-<p><%= data[1] %></p>
+<p>₹<%= data[1] %></p>
 <form action="/check" method="POST" id="emailForm">
   <div class="form-group">
+    <% if(!login) {%>
     <label for="InputEmail">Email address</label>
     <input
       type="email"
@@ -14,17 +15,8 @@
     <small id="emailHelp" class="form-text text-muted"
       >We'll never share your email with anyone else.</small
     >
+    <% } %>
   </div>
-  <!-- <div class="form-group">
-    <label for="productLink">Enter you product link here</label>
-    <input
-      class="form-control"
-      id="productLink"
-      type="text"
-      name="link"
-      required
-    />
-  </div> -->
   <div class="form-group">
     <label for="price_input">Enter your price</label>
     <input

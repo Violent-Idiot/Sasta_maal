@@ -1,11 +1,22 @@
-<form action="/" method="post">
-  <input
-    class="form-control"
-    type="text"
-    name="productLink"
-    placeholder="Enter product link here"
-    required
-  />
+<section style="display: flex; align-content: center; flex-direction: column;">
+  <h1 class="text-center" style="margin-top: 5%;">
+    Enter your product link below
+  </h1>
+  <h3 class="text-center" style="margin-top: 3%;">
+    We will check the product in web
+  </h3>
+  <form action="/" method="post" class="checkProduct">
+    <input
+      class="form-control yo1"
+      type="text"
+      name="productLink"
+      placeholder="Enter product link here"
+      required
+    />
+    <small class="form-text text-muted">Right now only supports Amazon</small>
 
-  <button class="btn btn-primary">submit</button>
-</form>
+    <button class="btn btn-primary" id="yo" style="margin-top: 5%;">
+      Check Product
+    </button>
+  </form>
+</section>
