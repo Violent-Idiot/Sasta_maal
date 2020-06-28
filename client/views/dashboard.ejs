@@ -1,1 +1,94 @@
-<h2>Hello <%= user %></h2>
+<h2>Hello <%= userId.email %></h2>
+<form action="/<%=userId.email%>/dashboard" method="POST">
+  <input
+    class="form-control"
+    type="text"
+    placeholder="Search product here"
+    name="productLink"
+    required
+  />
+  <button type="submit" class="btn btn-primary">Check Product</button>
+</form>
+<% userId.records.forEach(item => { %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <a href="<%=item.link%>">
+      <h5 class="card-title"><%= item.name %></h5>
+    </a>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">₹<%= item.price %></li>
+    <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li> -->
+  </ul>
+  <div class="card-body">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#staticBackdrop"
+    >
+      Update Product
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Change Price</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/<%=userId.email%>/update" method="post">
+              <input
+                class="form-control"
+                type="text"
+                name="price"
+                placeholder="₹<%= item.price %>"
+              />
+          </div>
+          <div class="modal-footer">
+              <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              >
+              Close
+            </button>
+            <button type="submit" name="helo" value="<%= item._id %>" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    <form action="/<%=userId.email%>/delete" method="post">
+      <button
+        name="helo"
+        class="btn btn-primary"
+        type="submit"
+        value="<%= item._id %>"
+      >
+        Delete Product
+      </button>
+    </form>
+  </div>
+</div>
+<% }) %>

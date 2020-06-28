@@ -7,9 +7,11 @@ var layout = require("express-ejs-layouts");
 var session = require("express-session");
 var flash = require("connect-flash");
 var passport = require("passport");
+var mongoose = require("mongoose");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var dashRouter = require("./routes/dashboard");
 
 require("./config/passport")(passport);
 var app = express();
@@ -18,6 +20,7 @@ var app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set("layout extractScripts", true);
+mongoose.set("useFindAndModify", false);
 
 app.use(layout);
 app.use(logger("dev"));
@@ -42,6 +45,7 @@ app.use((req, res, next) => {
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/:id", dashRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

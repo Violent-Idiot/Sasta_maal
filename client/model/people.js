@@ -1,12 +1,14 @@
 var mongoose = require("mongoose");
-const recordSchema = new mongoose.Schema({
-  link: {
-    type: String,
-  },
-  price: {
-    type: Number,
-  },
-});
+// const recordSchema = new mongoose.Schema({
+//   link: {
+//     type: String,
+//     default: null,
+//   },
+//   price: {
+//     type: Number,
+//     default: null,
+//   },
+// });
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -16,7 +18,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  records: [recordSchema],
+  records: [
+    {
+      name: {
+        type: String,
+        default: null,
+      },
+      link: {
+        type: String,
+        default: null,
+      },
+      price: {
+        type: Number,
+        default: null,
+      },
+    },
+  ],
 });
-
 module.exports = mongoose.model("peoples", userSchema);

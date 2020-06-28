@@ -38,14 +38,20 @@ router.post("/login", (req, res, next) => {
         return next(err);
       }
 
-      return res.redirect("/users/" + req.user.email + "/dashboard");
+      return res.redirect("/" + req.user.email + "/dashboard");
     });
   })(req, res, next);
 });
 
-router.get("/:id/dashboard", (req, res, next) => {
-  console.log(req.session.passport.user);
+// router.get("/:id/dashboard", (req, res, next) => {
+// console.log(req.session.passport.user);
 
-  res.render("dashboard", { user: req.params.id });
-});
+// res.render("dashboard", { user: req.params.id });
+// });
+
+// router.get("/:id/dashboard/", (req, res, next) => {
+//   console.log(req.session.passport.user);
+
+//   res.render("dashboard", { user: req.params.id });
+// });
 module.exports = router;

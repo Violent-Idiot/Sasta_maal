@@ -25,7 +25,7 @@ router.get("/check", async (req, res, next) => {
   var login = req.isAuthenticated();
   console.log(login);
 
-  res.render("form", { data: value, login });
+  res.render("form", { data: value, login, action: "check" });
 });
 
 router.post("/check", async (req, res, next) => {
@@ -51,6 +51,7 @@ router.post("/check", async (req, res, next) => {
       return res.json({ success: false, msg: "falied" });
     }
     res.json({ success: true, msg: "Captcha passed" });
+    // ifelse in db req.isAuthenticated()
     saveResult({
       email: req.body.email,
       link: url,
