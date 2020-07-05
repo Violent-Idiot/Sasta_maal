@@ -1,4 +1,4 @@
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -35,7 +35,6 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* display: none; */
 }
 .form-control {
   border-radius: 50px;
@@ -45,4 +44,100 @@ a {
 }
 .form-control::placeholder {
   text-align: center;
+} */
+@import url("./nav.css");
+@import url("./modal.css");
+.search {
+  background: #2f3640;
+  height: 40px;
+  border-radius: 40px;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  left: 50%;
+  top: 60%;
+}
+.searchBtn {
+  /* color: #e84118; */
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  color: white;
+  cursor: pointer;
+  border: 0;
+}
+.searchInput {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 16px !important;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 300px;
+  font-weight: bold;
+}
+.search:hover > .searchInput {
+  /* width: 300px; */
+  padding: 0 6px;
+}
+.fa-search {
+  font-size: 30px;
+}
+h1 {
+  font-size: 400%;
+}
+main p {
+  margin-top: 20px;
+  font-size: 200%;
+}
+#email,
+#price {
+  outline: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid #f39c12;
+  margin-top: 5%;
+  color: black;
+}
+#emailForm {
+  height: 3vh;
+  display: flex;
+  flex-direction: column;
+  /* position: relative; */
+}
+/* label {
+  position: absolute;
+} */
+.submit {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.submit button[type="submit"] {
+  color: white;
+  background: #2a2733;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 100px;
+  font-size: 20px;
+  height: 70%;
+  width: 120%;
+  transition: all 100ms ease;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  margin-right: 30px;
+}
+.submit button[type="submit"]:hover {
+  background: orange;
+  border-color: #2a2733;
 }

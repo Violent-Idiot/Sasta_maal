@@ -1,14 +1,5 @@
 var mongoose = require("mongoose");
-// const recordSchema = new mongoose.Schema({
-//   link: {
-//     type: String,
-//     default: null,
-//   },
-//   price: {
-//     type: Number,
-//     default: null,
-//   },
-// });
+require("./record");
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -20,18 +11,20 @@ const userSchema = new mongoose.Schema({
   },
   records: [
     {
-      name: {
-        type: String,
-        default: null,
-      },
-      link: {
-        type: String,
-        default: null,
-      },
-      price: {
-        type: Number,
-        default: null,
-      },
+      type: mongoose.Types.ObjectId,
+      ref: "records",
+      // name: {
+      //   type: String,
+      //   default: null,
+      // },
+      // link: {
+      //   type: String,
+      //   default: null,
+      // },
+      // price: {
+      //   type: Number,
+      //   default: null,
+      // },
     },
   ],
 });

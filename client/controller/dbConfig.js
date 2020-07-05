@@ -1,7 +1,7 @@
 require("../config/db");
 const users = require("../model/users");
 const people = require("../model/people");
-
+const Record = require("../model/record");
 // saving in DB
 
 const saveResult = (result) => {
@@ -26,12 +26,26 @@ const saveUser = (result) => {
 
 const updateUser = async (id, record) => {
   try {
-    console.log(record);
-    await people.findByIdAndUpdate(id, {
-      $push: {
-        records: record,
-      },
+    // console.log(record);
+    // await people.findByIdAndUpdate(id, {
+    //   $push: {
+    //     records: record,
+    //   },
+    // });
+    let newRecord = new Record({
+      userId: id,
+      name: record.name,
+      link: record.link,
+      price: record.price,
     });
+    await newRecord.save().catch((err) => console.log(err));
+    await people
+      .findByIdAndUpdate(id, {
+        $push: {
+          records: newRecord._id,
+        },
+      })
+      .exec();
   } catch (error) {
     console.log(error);
   }
@@ -39,24 +53,13 @@ const updateUser = async (id, record) => {
 
 const updatePrice = async (id, price) => {
   try {
-    await people.findOne({ "records._id": id }, async (err, result) => {
-      if (err) console.log(err);
-      else {
-        for (const item of result.records) {
-          if (item._id == id) {
-            item.price = price;
-            people.markModified("price");
-            await people.save();
-          }
-        }
-        // result.records.forEach((item) => {
-        //   if (item._id == id) {
-        //     item.price = price;
-        //     await people.save();
-        //   }
-        // });
-      }
-    });
+    await Record.findByIdAndUpdate(id, {
+      price,
+    })
+      .populate("peoples")
+      .exec((err, res) => {
+        console.log(res);
+      });
   } catch (error) {
     console.log(error);
   }
@@ -89,16 +92,14 @@ const findEmail = (email, url) => {
   }
 };
 
-const findIdUpdate = (id) => {
+const findIdUpdate = async (id) => {
   try {
-    return people.findById(id, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        // console.log(result);
-        return result;
-      }
-    });
+    return people
+      .findById(id)
+      .populate("records")
+      .then((yo) => {
+        return yo;
+      });
   } catch (error) {
     console.log(error);
   }
@@ -108,16 +109,17 @@ const findIdUpdate = (id) => {
 
 const deleteLink = async (id) => {
   try {
-    await people.update(
-      {},
-      {
-        $pull: {
-          records: {
-            _id: id,
+    Record.findByIdAndRemove(id).exec();
+    people
+      .updateOne(
+        {},
+        {
+          $pull: {
+            records: id,
           },
-        },
-      }
-    );
+        }
+      )
+      .exec();
   } catch (error) {
     console.log(error);
   }
