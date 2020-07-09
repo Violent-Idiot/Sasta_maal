@@ -5,7 +5,7 @@
 <form action="/<%=action%>" method="POST" id="emailForm" autocomplete="off">
   <!-- <div class="form-group"> -->
   <% if(!login) {%>
-  <input type="text" name="" id="email" placeholder="Email Address" requireds />
+  <input type="text" name="" id="email" placeholder="Email Address" required />
   <!-- <label for="email">Email Required</label> -->
   <!-- <label for="InputEmail">Email address</label>
     <input
@@ -20,7 +20,13 @@
       >We'll never share your email with anyone else.</small
     > -->
   <% } %>
-  <input type="text" name="" id="price" placeholder="Enter Price" requireds />
+  <input
+    type="text"
+    name="price"
+    id="price"
+    placeholder="Enter Price"
+    required
+  />
   <!-- </div> -->
   <!-- <div class="form-group">
     <label for="price_input">Enter your price</label>

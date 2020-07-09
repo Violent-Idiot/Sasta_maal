@@ -56,8 +56,10 @@ router.post(`/delete`, (req, res, next) => {
 });
 router.post("/update", (req, res, next) => {
   let user = app.get("user");
+  // console.log(req.body);
+
   let { price, helo } = req.body;
-  console.log(req.body.price, req.body.helo);
+  // console.log(price, helo);
   updatePrice(helo, price);
   res.redirect(`/${user}/dashboard`);
 });

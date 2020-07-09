@@ -1,0 +1,57 @@
+.card {
+  height: 250px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #2f3640;
+  border-radius: 30px;
+  padding: 10px;
+}
+a {
+  text-decoration: none;
+}
+.card-title {
+  color: white;
+  font-size: 1.5vw;
+  transition: color 100ms ease;
+}
+.card-title:hover {
+  color: orange;
+}
+.price {
+  color: white;
+  align-self: flex-end;
+}
+.cards {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+  row-gap: 30px;
+}
+.buttonCluster {
+  display: flex;
+  justify-content: space-evenly;
+}
+.buttonCluster button[type="submit"] {
+  background: none;
+  border: 1px solid white;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  height: 30px;
+  width: 120px;
+  transition: all 100ms ease;
+}
+.buttonCluster button[type="submit"]:hover {
+  border: 1px solid transparent;
+  background: orange;
+}
+.hiddenField {
+  display: none;
+  animation: fadeIn 1000ms ease;
+}
+.hiddenField::placeholder {
+  color: grey;
+}

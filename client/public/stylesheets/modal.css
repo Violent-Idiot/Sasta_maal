@@ -98,7 +98,7 @@ input[type="password"] {
 }
 .close:hover,
 .close:focus {
-  color: black;
+  color: orange;
   text-decoration: none;
   cursor: pointer;
 }

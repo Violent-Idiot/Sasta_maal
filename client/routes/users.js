@@ -31,7 +31,7 @@ router.post("/login", (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.redirect("/users/login");
+      return res.redirect("/");
     }
     req.logIn(user, function (err) {
       if (err) {
@@ -43,15 +43,4 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-// router.get("/:id/dashboard", (req, res, next) => {
-// console.log(req.session.passport.user);
-
-// res.render("dashboard", { user: req.params.id });
-// });
-
-// router.get("/:id/dashboard/", (req, res, next) => {
-//   console.log(req.session.passport.user);
-
-//   res.render("dashboard", { user: req.params.id });
-// });
 module.exports = router;

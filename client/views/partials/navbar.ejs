@@ -43,18 +43,31 @@
 </nav>
 <div id="myModal" class="modal">
   <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <p class="login" style="text-align: center;">
-        Login/Signup <span id="close" class="close">&times;</span>
-      </p>
+  <form action="/users/login" method="POST">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="login" style="text-align: center;">
+          Login/Signup <span id="close" class="close">&times;</span>
+        </p>
+      </div>
+      <% include ./messages %>
+      <div class="modal-body">
+        <input
+          type="text"
+          name="email"
+          placeholder="Username"
+          class="userInput"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          class="userInput"
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="submit">submit</button>
+      </div>
     </div>
-    <div class="modal-body">
-      <input type="text" name="" placeholder="Username" class="userInput" />
-      <input type="password" name="" placeholder="Password" class="userInput" />
-    </div>
-    <div class="modal-footer">
-      <button type="submit" id="submit">submit</button>
-    </div>
-  </div>
+  </form>
 </div>
