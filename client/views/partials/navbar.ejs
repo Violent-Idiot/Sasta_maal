@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <a class="navbar-brand" href="/">YourDealPrice.com</a>
   <button
     class="navbar-toggler"
@@ -16,4 +16,58 @@
       <a class="nav-item nav-link" href="/features">Features</a>
     </div>
   </div>
+</nav> -->
+<nav>
+  <ul class="navbar">
+    <!-- <li class="logo"> -->
+    <li class="nav-item">
+      <a href="/" class="nav-link" style="margin-left: 30px;">
+        <p style="font-weight: 1000; font-size: 35px;">Y</p>
+        <span class="logo-text">ourpricedeal</span>
+      </a>
+    </li>
+    <!-- </li> -->
+    <li class="nav-item">
+      <p class="nav-link" id="login" style="cursor: pointer;">
+        <i class="fas fa-user-circle"></i>
+        <span class="link-text">Login</span>
+      </p>
+    </li>
+    <li class="nav-item">
+      <a href="" class="nav-link">
+        <i class="fas fa-layer-group"></i>
+        <span class="link-text">Features</span>
+      </a>
+    </li>
+  </ul>
 </nav>
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <form action="/users/login" method="POST">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="login" style="text-align: center;">
+          Login/Signup <span id="close" class="close">&times;</span>
+        </p>
+      </div>
+      <% include ./messages %>
+      <div class="modal-body">
+        <input
+          type="text"
+          name="email"
+          placeholder="Username"
+          class="userInput"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          class="userInput"
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="submit">submit</button>
+      </div>
+    </div>
+  </form>
+</div>

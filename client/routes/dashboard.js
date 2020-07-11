@@ -14,7 +14,7 @@ var router = express.Router();
 
 router.get("/dashboard", isAuth, async (req, res, next) => {
   let userId = await findIdUpdate(req.session.passport.user);
-  // console.log(userId.records);
+  // console.log(userId);
   app.set("user", userId.email);
   res.render("dashboard", { userId });
 });
@@ -44,7 +44,7 @@ router.post(`/check`, (req, res, next) => {
     link: app.get("data"),
     price: req.body.price,
   };
-  console.log(record);
+  // console.log(record);
   updateUser(req.session.passport.user, record);
   res.redirect(`/${user}/dashboard`);
 });
@@ -56,8 +56,10 @@ router.post(`/delete`, (req, res, next) => {
 });
 router.post("/update", (req, res, next) => {
   let user = app.get("user");
+  // console.log(req.body);
+
   let { price, helo } = req.body;
-  // console.log(req.body.price, req.body.helo);
+  // console.log(price, helo);
   updatePrice(helo, price);
   res.redirect(`/${user}/dashboard`);
 });
