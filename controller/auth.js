@@ -4,7 +4,7 @@ var isAuth = (req, res, next) => {
     return next();
   } else {
     req.flash("error", "Please log in");
-    res.redirect("/users/login");
+    res.redirect("/");
   }
 };
 module.exports = isAuth;

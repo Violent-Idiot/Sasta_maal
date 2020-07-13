@@ -1,15 +1,4 @@
 <h1>Hello <%= userId.email %></h1>
-<!-- <form action="/<%#=userId.email%>/dashboard" method="POST">
-  
-  <input
-    class="form-control"
-    type="text"
-    placeholder="Search product here"
-    name="productLink"
-    required
-  />
-  <button type="submit" class="btn btn-primary">Check Product</button>
-</form> -->
 <div class="search">
   <form action="/<%=userId.email%>/dashboard" method="post">
     <input type="text" name="productLink" class="searchInput" />

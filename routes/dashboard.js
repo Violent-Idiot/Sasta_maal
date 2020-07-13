@@ -15,8 +15,10 @@ var router = express.Router();
 router.get("/dashboard", isAuth, async (req, res, next) => {
   let userId = await findIdUpdate(req.session.passport.user);
   // console.log(userId);
+  let isLogin = req.isAuthenticated();
+  console.log(isLogin);
   app.set("user", userId.email);
-  res.render("dashboard", { userId });
+  res.render("dashboard", { userId, isLogin });
 });
 
 router.post("/dashboard", isAuth, (req, res, next) => {

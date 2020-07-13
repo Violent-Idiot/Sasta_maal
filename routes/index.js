@@ -8,7 +8,9 @@ var fetch = require("node-fetch");
 var isAuth = require("../controller/auth");
 
 router.get("/", function (req, res, next) {
-  res.render("home");
+  let isLogin = req.isAuthenticated();
+  console.log(isLogin);
+  res.render("home", { isLogin });
 });
 
 router.get("/features", (req, res, next) => {
@@ -63,9 +65,9 @@ router.post("/check", async (req, res, next) => {
 router.get("/result", (req, res, next) => {
   res.render("result");
 });
-
-// router.get("*", function (req, res, next) {
-//   res.send("kuch kaam nahi hai kya");
-// });
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
 module.exports = router;

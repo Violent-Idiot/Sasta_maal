@@ -1,22 +1,3 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <a class="navbar-brand" href="/">YourDealPrice.com</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="/features">Features</a>
-    </div>
-  </div>
-</nav> -->
 <nav>
   <ul class="navbar">
     <!-- <li class="logo"> -->
@@ -27,12 +8,24 @@
       </a>
     </li>
     <!-- </li> -->
+    <% if (isLogin) { %>
+    <!-- LOGOUT -->
+    <li class="nav-item">
+      <a class="nav-link" href="/logout" style="cursor: pointer;">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="link-text">Logout</span>
+      </a>
+    </li>
+    <% } else { %>
+    <!-- LOGIN -->
     <li class="nav-item">
       <p class="nav-link" id="login" style="cursor: pointer;">
         <i class="fas fa-user-circle"></i>
         <span class="link-text">Login</span>
       </p>
     </li>
+
+    <% } %>
     <li class="nav-item">
       <a href="" class="nav-link">
         <i class="fas fa-layer-group"></i>
